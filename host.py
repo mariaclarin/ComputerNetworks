@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 
 # IP of the server or the machine
-HOST = ""
-PORT = 1412
+HOST = input("Enter destination IP: ")
+PORT = 8888
 
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     s.bind((HOST, PORT))
@@ -21,6 +21,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             path = Path(f'.{word_list[1]}')
             if path.is_file():
                 word_list[1] = word_list[1].replace("/", "", 1)
-                s.sendto(os.system(f'cat {word_list[1]}'), addr)
+                s.sendto(os.system(f'cat {word_list[1]}'), data[1])
         elif word_list[0] == 'post':
             pass
