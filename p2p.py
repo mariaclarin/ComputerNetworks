@@ -19,20 +19,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 
     # while loop - wont stop until we tell them to
     while True:
-        print("Welcome to L4AC's shit house")
-        print("What do you want to do? (GET, POST)")
-        messagerec, address = s.recvfrom(1024)
-        decoded = messagerec.decode('ascii')
-        msg = decoded.lower()
-        if msg == "get":
-            get = input("What file would you want to get? (e.g. '/index.html')")
-            with open(get, "r") as fo:
-                # loop to read all the lines in the file
-                for line in fo:
-                    # send it to the sender address, decoded to ascii
-                    s.sendto(line.encode(), ((address[0], PORT)))
-                fo.seek(0)
-
         print("Press Enter to continue")
         # to recieve from the socket
         data, address = s.recvfrom(1024)
@@ -48,7 +34,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         if word_list[0] == "get":
             # replace the / with nothing, do it once
             # optional?
-            word_list[1] = word_list[1].replace("/", "", 1)
+            # word_list[1] = word_list[1].replace("/", "", 1)
             # remove trailing characters, to remove "\n"
             word_list[1] = word_list[1].rstrip()
             # open the file (supposed form the message index.html)
@@ -62,3 +48,23 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         # run this if the first word is 'post'
         elif word_list[0] == 'post':
             pass
+
+        else:
+            print(data)
+
+        while True:
+            messagerec, address = s.recvfrom(1024)
+            if messagerec.len() != 0:
+                print(messagerec)
+            else:
+                msg = input("")
+                s.sendto(msg.encode(), (HOST, PORT))
+                continue
+                # kasi timer 10 sec if user blom kasi input
+                # break the if else function
+
+
+        msg = input("")
+        s.sendto(msg.encode(), (HOST, PORT))
+        messagerec, address = s.recvfrom(1024)
+        print(messagerec)

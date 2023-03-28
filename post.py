@@ -19,7 +19,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 
     # while loop - wont stop until we tell them to
     while True:
-        print("Welcome to L4AC's shit house")
+        print("Welcome to L4AC's CompNet project")
         print("What do you want to do? (GET, POST)")
         messagerec, address = s.recvfrom(1024)
         decoded = messagerec.decode('ascii')
