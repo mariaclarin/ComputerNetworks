@@ -19,13 +19,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 
     # while loop - wont stop until we tell them to
     while True:
-        print("Welcome to L4AC's shit house")
+        print("Welcome to L4AC's CompNet project")
+        SEND = input("What is your destination IP? ")
         print("What do you want to do? (GET, POST)")
-        messagerec, address = s.recvfrom(1024)
-        decoded = messagerec.decode('ascii')
-        msg = decoded.lower()
+        # messagerec, address = s.recvfrom(1024)
+        # decoded = messagerec.decode('ascii')
+        msg = input()
+        msg = msg.lower()
         if msg == "get":
             get = input("What file would you want to get? (e.g. '/index.html')")
+            s.sendto("Get ... " + get.encode(), ((SEND, PORT)))
+            #Function for the receiver to scan his pc
+        elif msg == "post":
             with open(get, "r") as fo:
                 # loop to read all the lines in the file
                 for line in fo:
@@ -40,7 +45,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         decode = data.decode('ascii')
         # split the decode or message with '', store in an array
         word_list = decode.split(' ')
-
+    
         # set whatever the first word is to lowercase
         word_list[0] = word_list[0].lower()
         
