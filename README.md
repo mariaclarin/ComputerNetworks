@@ -7,7 +7,8 @@
 - [Sequence Diagrams](#sequence-diagrams)
 - [Libraries and Requirements](#libraries-and-requirements)
 - [Downloading Files](#downloading-files)
-- [Installation and Program Run](#installation-and-program-run)
+- [Installation](#installation)
+- [Program Run](#program-run)
 - [Testing](#testing)
 - [Result Documentation](#result-documentation)
 - [Future Improvements](#future-improvements)
@@ -19,7 +20,7 @@
 ## Libraries and Requirements
 ## Tools
 ## Downloading Files
-### Source Code Download
+### Source Code Download:
 
 **Git Download Zip**
 1. Click the '<> Code' dropdown button located on the repository page 
