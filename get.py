@@ -10,7 +10,7 @@ HOST = ""
 PORT = 8080
 
 
-# this py for 28 march
+# this py for 30 march
 
 # set s variable as socket.socket
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
@@ -23,21 +23,30 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         try:
             # messagerec, address = s.recvfrom(1024)
             # decoded = messagerec.decode('ascii')
+            #ask the user to type whether they want 
             msg = input("What do you want to do? (GET, POST)\n")
-            msg = msg.lower()
+            msg = msg.lower() #lower case string
+            #if statement to get (request the file and open the requested file)
             if msg == "get":
+                #ask user for the input for the file they want to get
                 get = input("What file would you want to get? (e.g. '/index.html')\n")
                 getmsg = "get " + get
+                #encode and send it to another user
                 s.sendto(getmsg.encode(), ((SEND, PORT)))
                 filecontent = []
                 reading = True
                 while reading:
-                    incoming = select.select([s],[],[],5)
+                    #The user will wait to get the message, if the time expire
+                    #they will automatically ask for the file
+                    incoming = select.select([s],[],[],5) 
                     try:
                         data, address = s.recvfrom(1024)
+                        #decode the encoded message and remove entrailing characters
                         decode = data.decode("ascii")
                         decode = decode.rstrip()
+                        #store message in the list
                         filecontent.append(decode)
+                        #printout the message
                         print(decode)
                     except IndexError:
                         reading = False 
@@ -50,10 +59,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         # fo.seek(0)
                         fo.close()
                     # store decode to a file
+            #if statement to post (see the request and send the messages)
             elif msg == "post":
+                #receive message and decode it
                 data, address = s.recvfrom(1024)
                 decode = data.decode('ascii')
                 get = decode.split(' ')
+                #the file is on the second index
                 gets = get[1]
                 gets = gets.replace("/", "", 1)
                 gets = gets.rstrip()
@@ -66,32 +78,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 continue
         except Exception as e:
             print(e)
-
-        # # to recieve from the socket
-        # data, address = s.recvfrom(1024)
-        # # decode the data recieved into ascii
-        # decode = data.decode('ascii')
-        # # split the decode or message with '', store in an array
-        # word_list = decode.split(' ')
-    
-        # # set whatever the first word is to lowercase
-        # word_list[0] = word_list[0].lower()
-        
-        # # run this if the first word is 'get'
-        # if word_list[0] == "get":
-        #     # replace the / with nothing, do it once
-        #     # optional?
-        #     word_list[1] = word_list[1].replace("/", "", 1)
-        #     # remove trailing characters, to remove "\n"
-        #     word_list[1] = word_list[1].rstrip()
-        #     # open the file (supposed form the message index.html)
-        #     with open(word_list[1], "r") as fo:
-        #         # loop to read all the lines in the file
-        #         for line in fo:
-        #             # send it to the sender address, decoded to ascii
-        #             s.sendto(line.encode(), ((address[0], PORT)))
-        #         fo.seek(0)
-
-        # # run this if the first word is 'post'
-        # elif word_list[0] == 'post':
-        #     pass
