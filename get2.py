@@ -5,17 +5,21 @@ import socket, select
 HOST = ""
 # direct the connection to  port 8888
 PORT = 8008
-DESTINATION_PORT = 8080
+# DESTINATION_PORT = 8008
 
 
-# this py for 30 march
+# this py for 1 april
 
 # set s variable as socket.socket
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     # associate socket with the adderss
     s.bind((HOST, PORT))
     print("Welcome to L4AC's CompNet project")
+    print("=================================")
     SEND = input("What is your destination IP? ")
+    DESTINATION_PORT = int(input("What is your destination port? "))
+    print("=================================")
+    print("Connected to", SEND, "on port", DESTINATION_PORT)
     # while loop - wont stop until we tell them to
     while True:
         try:
@@ -38,7 +42,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 while reading:
                     #The user will wait to get the message, if the time expire
                     #they will automatically ask for the file
-                    incoming = select.select([s],[],[],5) 
+                    incoming = select.select([s],[],[],5)
                     try:
                         data, address = incoming[0][0].recvfrom(1024)
                         #decode the encoded message and remove entrailing characters
@@ -48,7 +52,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         filecontent.append(decode)
                         #printout the message
                     except :
-                        reading = False 
+                        reading = False
                     # get = get.replace("/", "", 1)
                     with open(name, "w") as fo:
                         # loop to read all the lines in the file
@@ -58,8 +62,19 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         fo.seek(0)
                         # fo.close()
                     # reading = False
-
                     continue
+                if len(filecontent) == 0:
+                    print("File is not received")
+                    incomings = select.select([s],[],[],1) 
+                    try:
+                        messagerec, address = incomings[0][0].recvfrom(1024)
+                        decoded = messagerec.decode('ascii')
+                        get = decoded.split(' ')
+                        print(get)
+                    except:
+                        pass
+                else:
+                    print("File received. Saved as", name)
                 continue
                     # store decode to a file
             #if statement to post (see the request and send the messages)
@@ -68,6 +83,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 data, address = s.recvfrom(1024)
                 decode = data.decode('ascii')
                 get = decode.split(' ')
+                print(get[0], get[1])
                 #the file is on the second index
                 gets = get[1]
                 gets = gets.replace("/", "", 1)
@@ -81,3 +97,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 continue
         except Exception as e:
             print(e)
+            errors = str(e)
+            s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))

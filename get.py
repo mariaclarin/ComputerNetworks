@@ -1,21 +1,25 @@
-import socket, select
+import socket, select, re
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
 HOST = ""
 # direct the connection to  port 8888
 PORT = 8080
-DESTINATION_PORT = 8008
+# DESTINATION_PORT = 8008
 
 
-# this py for 30 march
+# this py for 1 april
 
 # set s variable as socket.socket
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     # associate socket with the adderss
     s.bind((HOST, PORT))
     print("Welcome to L4AC's CompNet project")
+    print("=================================")
     SEND = input("What is your destination IP? ")
+    DESTINATION_PORT = int(input("What is your destination port? "))
+    print("=================================")
+    print("Connected to", SEND, "on port", DESTINATION_PORT)
     # while loop - wont stop until we tell them to
     while True:
         try:
@@ -35,10 +39,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 reading = True
                 name = input("Enter new file name: ")
                 name = name + ".html"
+                print("loading...")
                 while reading:
                     #The user will wait to get the message, if the time expire
                     #they will automatically ask for the file
-                    incoming = select.select([s],[],[],5) 
+                    incoming = select.select([s],[],[],5)
                     try:
                         data, address = incoming[0][0].recvfrom(1024)
                         #decode the encoded message and remove entrailing characters
@@ -48,26 +53,34 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         filecontent.append(decode)
                         #printout the message
                     except :
-                        reading = False 
+                        reading = False
                     # get = get.replace("/", "", 1)
-                    with open(name, "w") as fo:
-                        # loop to read all the lines in the file
-                        for line in filecontent:
-                            # send it to the sender address, decoded to ascii
-                            fo.write(f"{line}\n")
-                        fo.seek(0)
-                        # fo.close()
-                    # reading = False
-
+                    er_check = filecontent[0]
+                    er_check2 = re.search("\[Errno.*", er_check)
+                    if er_check2:
+                        print(er_check)
+                        print("File is not received")
+                    else:
+                        with open(name, "w") as fo:
+                            # loop to read all the lines in the file
+                            for line in filecontent:
+                                # send it to the sender address, decoded to ascii
+                                fo.write(f"{line}\n")
+                            fo.seek(0)
+                        print("File received. Saved as", name)
                     continue
+                # if len(filecontent) == 0:
+                #     print("File is not received")
+                # else:
+                #     print("File received. Saved as", name)
                 continue
-                    # store decode to a file
             #if statement to post (see the request and send the messages)
             elif msg == "post":
                 #receive message and decode it
                 data, address = s.recvfrom(1024)
                 decode = data.decode('ascii')
                 get = decode.split(' ')
+                print(get)
                 #the file is on the second index
                 gets = get[1]
                 gets = gets.replace("/", "", 1)
