@@ -33,6 +33,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.sendto(getmsg.encode(), ((SEND, DESTINATION_PORT)))
                 filecontent = []
                 reading = True
+                name = input("Enter new file name: ")
+                name = name + ".html"
                 while reading:
                     #The user will wait to get the message, if the time expire
                     #they will automatically ask for the file
@@ -47,10 +49,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         #printout the message
                     except :
                         reading = False 
-                    get = get.replace("/", "", 1)
-                    # name = input("Enter name file: ")
-                    # name = name + ".html"
-                    with open("new.html", "w") as fo:
+                    # get = get.replace("/", "", 1)
+                    with open(name, "w") as fo:
                         # loop to read all the lines in the file
                         for line in filecontent:
                             # send it to the sender address, decoded to ascii
