@@ -1,13 +1,11 @@
 import socket, select
-import os
-from pathlib import Path
-import requests
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
 HOST = ""
 # direct the connection to  port 8888
 PORT = 8080
+DESTINATION_PORT = 8008
 
 
 # this py for 30 march
@@ -32,7 +30,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 get = input("What file would you want to get? (e.g. '/index.html')\n")
                 getmsg = "get " + get
                 #encode and send it to another user
-                s.sendto(getmsg.encode(), ((SEND, PORT)))
+                s.sendto(getmsg.encode(), ((SEND, DESTINATION_PORT)))
                 filecontent = []
                 reading = True
                 while reading:
@@ -40,24 +38,29 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     #they will automatically ask for the file
                     incoming = select.select([s],[],[],5) 
                     try:
-                        data, address = s.recvfrom(1024)
+                        data, address = incoming[0][0].recvfrom(1024)
                         #decode the encoded message and remove entrailing characters
                         decode = data.decode("ascii")
                         decode = decode.rstrip()
                         #store message in the list
                         filecontent.append(decode)
                         #printout the message
-                        print(decode)
-                    except IndexError:
+                    except :
                         reading = False 
                     get = get.replace("/", "", 1)
-                    with open(get, "w") as fo:
+                    # name = input("Enter name file: ")
+                    # name = name + ".html"
+                    with open("new.html", "w") as fo:
                         # loop to read all the lines in the file
                         for line in filecontent:
                             # send it to the sender address, decoded to ascii
                             fo.write(f"{line}\n")
-                        # fo.seek(0)
-                        fo.close()
+                        fo.seek(0)
+                        # fo.close()
+                    # reading = False
+
+                    continue
+                continue
                     # store decode to a file
             #if statement to post (see the request and send the messages)
             elif msg == "post":
@@ -73,8 +76,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     # loop to read all the lines in the file
                     for line in fo:
                         # send it to the sender address, decoded to ascii
-                        s.sendto(line.encode(), ((SEND, PORT)))
-                    fo.seek(0)
+                        s.sendto(line.encode(), ((SEND, DESTINATION_PORT)))
+                    fo.close()
                 continue
         except Exception as e:
             print(e)
