@@ -54,12 +54,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         #printout the message
                     except :
                         reading = False
-                    # get = get.replace("/", "", 1)
                     er_check = filecontent[0]
                     er_check2 = re.search("\[Errno.*", er_check)
                     if er_check2:
                         print(er_check)
-                        print("File is not received")
+                        filecontent.clear()
+                        break
                     else:
                         with open(name, "w") as fo:
                             # loop to read all the lines in the file
@@ -67,12 +67,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                                 # send it to the sender address, decoded to ascii
                                 fo.write(f"{line}\n")
                             fo.seek(0)
-                        print("File received. Saved as", name)
                     continue
-                # if len(filecontent) == 0:
-                #     print("File is not received")
-                # else:
-                #     print("File received. Saved as", name)
+                if len(filecontent) == 0:
+                    print("File is not received")
+                else:
+                    print("File received. Saved as", name)
                 continue
             #if statement to post (see the request and send the messages)
             elif msg == "post":
@@ -93,4 +92,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     fo.close()
                 continue
         except Exception as e:
-            print(e)
+            # print(e)
+            pass
