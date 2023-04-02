@@ -32,28 +32,28 @@ Visual representations of the interaction between the two peers for our project 
 1. Scenario 1: All packages received with no issues.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090290956328247367/Blank_diagram_3.png"> 
 
-2. **Scenario 2:** No response from other peer thus premature timeout occurs.
+2. Scenario 2: No response from other peer thus premature timeout occurs.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092098536558047232/case_2.png">
 
-3. **Scenario 3:**
+3. Scenario 3:
 <img src="">
 
-4. **Scenario 4:**
+4. Scenario 4:
 <img src="">
 
-5. **Scenario 5:**
+5. Scenario 5:
 <img src="">
 
-6. **Scenario 6:**
+6. Scenario 6:
 <img src="">
 
-7. **Scenario 7:**
+7. Scenario 7:
 <img src="">
 
-8. **Scenario 8:**
+8. Scenario 8:
 <img src="">
 
-9. **Scenario 9:**
+9. Scenario 9:
 <img src="">
 
 ## Libraries
@@ -101,6 +101,27 @@ git clone https://github.com/mariaclarin/ComputerNetworks
 **Note:** Clone the repository in both machines.
 
 ## Virtual Machine Installation
+
+To use the preconfigured virtual machines for testing, follow these steps:
+
+1. Download the virtual machine files (.ova) from [here](https://drive.google.com/drive/folders/1wj_-Vg8t6ctcz3UzJpr5EPx1WFFFeakV?usp=sharing). The virtual machines are preconfigured with Kali Linux and Ubuntu as the base machines, and are ready for testing.
+
+2. Add the downloaded virtual machine files into Oracle VirtualBox.
+
+3. Open a UDP port in the virtual machine network settings.
+
+4. Connect both virtual machines via NAT network.
+
+5. Get the IP address of each virtual machine by typing the "ip a" command in the terminal of each virtual machine.
+
+6. Test and ensure that the connection is established with the "ping" command.
+
+7. Your virtual machines are now ready to use for testing.
+
+**Note:** the password for both VMs is will1289
+
+
+
 ## Testing
 ## Result Documentation
 ## Future Improvements
