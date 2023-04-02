@@ -29,30 +29,55 @@ This project is a class project for computer network courses which touches sever
 
 ## Sequence Diagrams
 Visual representations of the interaction between the two peers for our project for possible scenarios in sequence diagram form: </br>
-1. **Scenario 1:** All packages received with no issues.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090290956328247367/Blank_diagram_3.png">
+1. Scenario 1: All packages received with no issues.
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090290956328247367/Blank_diagram_3.png"> 
+
 2. **Scenario 2:** No response from other peer thus premature timeout occurs.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092098536558047232/case_2.png">
+
 3. **Scenario 3:**
 <img src="">
+
 4. **Scenario 4:**
 <img src="">
+
 5. **Scenario 5:**
 <img src="">
+
 6. **Scenario 6:**
 <img src="">
+
 7. **Scenario 7:**
 <img src="">
+
 8. **Scenario 8:**
 <img src="">
+
 9. **Scenario 9:**
 <img src="">
 
-## Libraries and Requirements
-## Tools
-## Downloading Files
-### Source Code Download:
+## Libraries
+Here is the list of libraries used for the project (Python):
+1. socket (Python Standard Library)
+    - to create and interact with sockets that send and receive data over the internet or other network protocols.
+2. json (3.10.0 used)
+    - methods for encoding and decoding data in JSON format
+3. select (Python Standard Library)
+    - mechanism for monitoring multiple I/O channels to determine when data is available to read or write,
+4. re (2.2.1 used)
+    - support for regular expressions
+5. random (Python Standard Library)
+    - generating random numbers and sequences, used for randomizing packet loss rates.
 
+## Tools, Languages, and File Formats
+![](https://img.shields.io/badge/Language-Python-blue)
+![](https://img.shields.io/badge/Language-HTML-blue)
+![](https://img.shields.io/badge/File%20Format-JSON-green)
+![](https://img.shields.io/badge/Tools-GitHub-red)
+![](https://img.shields.io/badge/Tools-Virtual%20Studio%20Code-red)
+![](https://img.shields.io/badge/Tools-Virtual%20Box-red)
+
+## Downloading Files
 **Git Download Zip**
 1. Click the '<> Code' dropdown button located on the repository page 
 2. Select 'Download Zip' 
