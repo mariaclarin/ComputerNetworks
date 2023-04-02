@@ -1,10 +1,10 @@
-import socket, select
+import socket, select, re, random, json, time
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
-HOST = ""
+# HOST = ""
 # direct the connection to  port 8888
-PORT = 8008
+# PORT = 8080
 # DESTINATION_PORT = 8008
 
 
@@ -12,6 +12,8 @@ PORT = 8008
 
 # set s variable as socket.socket
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+    HOST = input("Enter your machine IP: ")
+    PORT = int(input("Enter your machine PORT: "))
     # associate socket with the adderss
     s.bind((HOST, PORT))
     print("Welcome to L4AC's CompNet project")
@@ -35,10 +37,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 getmsg = "get " + get
                 #encode and send it to another user
                 s.sendto(getmsg.encode(), ((SEND, DESTINATION_PORT)))
+                t1 = time.time()
                 filecontent = []
                 reading = True
                 name = input("Enter new file name: ")
                 name = name + ".html"
+                print("loading...")
                 while reading:
                     #The user will wait to get the message, if the time expire
                     #they will automatically ask for the file
@@ -50,40 +54,60 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         decode = decode.rstrip()
                         #store message in the list
                         filecontent.append(decode)
+                        # print("try decode")
                         #printout the message
                     except :
                         reading = False
-                    # get = get.replace("/", "", 1)
-                    with open(name, "w") as fo:
-                        # loop to read all the lines in the file
-                        for line in filecontent:
-                            # send it to the sender address, decoded to ascii
-                            fo.write(f"{line}\n")
-                        fo.seek(0)
-                        # fo.close()
-                    # reading = False
+                    er_check = filecontent[0]
+                    er_check2 = re.search("\[Errno.*", er_check)
+                    if er_check2:
+                        print(er_check)
+                        filecontent.clear()
+                        break
+                    else:
+                        with open(name, "w") as fo:
+                            # loop to read all the lines in the file
+                            for line in filecontent:
+                                # send it to the sender address, decoded to ascii
+                                fo.write(f"{line}\n")
+                            fo.seek(0)
+                        # print("with")
                     continue
                 if len(filecontent) == 0:
                     print("File is not received")
-                    incomings = select.select([s],[],[],1) 
-                    try:
-                        messagerec, address = incomings[0][0].recvfrom(1024)
-                        decoded = messagerec.decode('ascii')
-                        get = decoded.split(' ')
-                        print(get)
-                    except:
-                        pass
                 else:
+                    et1 = time.time()
+                    print("Time exe1 :", (et1-t1))
+                    with open ("database.json") as file:
+                        listJSON = json.load(file)
+                    
+                    jsondict = {
+                        "target IP" : SEND,
+                        "target PORT" : DESTINATION_PORT,
+                        "file name" : name,
+                        "file content" : filecontent
+                    }
+                    listJSON.append(jsondict)
+                    with open ("database.json", 'w') as file:
+                        json.dump(listJSON, file, indent = 4, separators=(',',': '))
                     print("File received. Saved as", name)
                 continue
-                    # store decode to a file
             #if statement to post (see the request and send the messages)
             elif msg == "post":
                 #receive message and decode it
+                flag = False
+                while flag == False:
+                    if random.random() < 0.25:
+                        print("packetloss is there lol")
+                        msg = input("What do you want to do? (GET, POST)\n")
+                        msg = msg.lower()
+                    else:
+                        flag = True
+                        continue
                 data, address = s.recvfrom(1024)
                 decode = data.decode('ascii')
                 get = decode.split(' ')
-                print(get[0], get[1])
+                # print(get)
                 #the file is on the second index
                 gets = get[1]
                 gets = gets.replace("/", "", 1)
@@ -97,5 +121,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 continue
         except Exception as e:
             print(e)
-            errors = str(e)
+            errors  = str(e)
             s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))

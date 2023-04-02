@@ -1,11 +1,10 @@
-import socket, select, re
-import json
+import socket, select, re, random, json, time
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
-HOST = ""
+# HOST = ""
 # direct the connection to  port 8888
-PORT = 8080
+# PORT = 8080
 # DESTINATION_PORT = 8008
 
 
@@ -13,6 +12,8 @@ PORT = 8080
 
 # set s variable as socket.socket
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+    HOST = input("Enter your machine IP: ")
+    PORT = int(input("Enter your machine PORT: "))
     # associate socket with the adderss
     s.bind((HOST, PORT))
     print("Welcome to L4AC's CompNet project")
@@ -36,6 +37,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 getmsg = "get " + get
                 #encode and send it to another user
                 s.sendto(getmsg.encode(), ((SEND, DESTINATION_PORT)))
+                t1 = time.time()
                 filecontent = []
                 reading = True
                 name = input("Enter new file name: ")
@@ -74,6 +76,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 if len(filecontent) == 0:
                     print("File is not received")
                 else:
+                    et1 = time.time()
+                    print("Time exe1 :", (et1-t1))
                     with open ("database.json") as file:
                         listJSON = json.load(file)
                     
@@ -91,10 +95,19 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             #if statement to post (see the request and send the messages)
             elif msg == "post":
                 #receive message and decode it
+                flag = False
+                while flag == False:
+                    if random.random() < 0.25:
+                        print("packetloss is there lol")
+                        msg = input("What do you want to do? (GET, POST)\n")
+                        msg = msg.lower()
+                    else:
+                        flag = True
+                        continue
                 data, address = s.recvfrom(1024)
                 decode = data.decode('ascii')
                 get = decode.split(' ')
-                print(get)
+                # print(get)
                 #the file is on the second index
                 gets = get[1]
                 gets = gets.replace("/", "", 1)
@@ -107,5 +120,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     fo.close()
                 continue
         except Exception as e:
-            # print(e)
-            pass
+            print(e)
+            errors  = str(e)
+            s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))
