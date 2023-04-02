@@ -22,8 +22,10 @@ This project is a class project for computer network courses which touches sever
 ## Features
 1. POST
 2. GET 
-3. Packet Loss Simulation
+3. Packet Loss Emulation
+    - users can validate the existence of packet loss (given a random percentage) in a packet loss emulated environment/channel.
 4. RTT Timer
+    - A Round Trip Time (RTT) timer that starts when the first peer sends a request and ends when the second peer responds. Used to check the connection response time.
 5. Multithreading
 6. Three-way Handshake
 
@@ -105,17 +107,11 @@ git clone https://github.com/mariaclarin/ComputerNetworks
 To use the preconfigured virtual machines for testing, follow these steps:
 
 1. Download the virtual machine files (.ova) from [here](https://drive.google.com/drive/folders/1wj_-Vg8t6ctcz3UzJpr5EPx1WFFFeakV?usp=sharing). The virtual machines are preconfigured with Kali Linux and Ubuntu as the base machines, and are ready for testing.
-
 2. Add the downloaded virtual machine files into Oracle VirtualBox.
-
 3. Open a UDP port in the virtual machine network settings.
-
 4. Connect both virtual machines via NAT network.
-
 5. Get the IP address of each virtual machine by typing the "ip a" command in the terminal of each virtual machine.
-
 6. Test and ensure that the connection is established with the "ping" command.
-
 7. Your virtual machines are now ready to use for testing.
 
 **Note:** the password for both VMs is will1289
