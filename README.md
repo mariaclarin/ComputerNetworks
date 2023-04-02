@@ -1,5 +1,7 @@
 # Peer-to-Peer Protocol with UDP 👥💻🤝💻👥
 ## Introduction
+This project is a class project for computer network courses which touches several things we have learned in classes. The name of this project is reliable UDP protocol with socket programming. Basically as a class, we need to create a P2P protocol on top of the UDP using socket programming that works like HTTP 1.1 GET and POST methods such that an html file can be obtained if the ‘GET’ method is used in and a JSON data can be stored in a storage medium (e.g., file or database) in the target peer if the ‘POST’ method is used. 
+
 ## Table of Contents
 - [Purpose and Structure](#purpose-and-structure)
 - [How it works](#how-it-works)
