@@ -1,4 +1,5 @@
 import socket, select, re
+import json
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
@@ -51,6 +52,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         decode = decode.rstrip()
                         #store message in the list
                         filecontent.append(decode)
+                        # print("try decode")
                         #printout the message
                     except :
                         reading = False
@@ -67,10 +69,23 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                                 # send it to the sender address, decoded to ascii
                                 fo.write(f"{line}\n")
                             fo.seek(0)
+                        # print("with")
                     continue
                 if len(filecontent) == 0:
                     print("File is not received")
                 else:
+                    with open ("database.json") as file:
+                        listJSON = json.load(file)
+                    
+                    jsondict = {
+                        "target IP" : SEND,
+                        "target PORT" : DESTINATION_PORT,
+                        "file name" : name,
+                        "file content" : filecontent
+                    }
+                    listJSON.append(jsondict)
+                    with open ("database.json", 'w') as file:
+                        json.dump(listJSON, file, indent = 4, separators=(',',': '))
                     print("File received. Saved as", name)
                 continue
             #if statement to post (see the request and send the messages)

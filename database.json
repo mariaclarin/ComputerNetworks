@@ -1,0 +1,42 @@
+[
+    {
+        "target IP": "192.167.15.18",
+        "target PORT": 8008,
+        "file name": "json5.html",
+        "file content": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "",
+            "<head>",
+            "",
+            "</head>",
+            "",
+            "<body>",
+            "    <h1>CompNet KALI</h1>",
+            "    <p>Step Wil Jacq Rich Erwann</p>",
+            "</body>",
+            "",
+            "</html>"
+        ]
+    },
+    {
+        "target IP": "192.167.15.18",
+        "target PORT": 8008,
+        "file name": "jsonUbuntu.html",
+        "file content": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "",
+            "<head>",
+            "",
+            "</head>",
+            "",
+            "<body>",
+            "    <h1>CompNet UBUNTU</h1>",
+            "    <p>Step Wil Jacq Rich Erwann</p>",
+            "</body>",
+            "",
+            "</html>"
+        ]
+    }
+]

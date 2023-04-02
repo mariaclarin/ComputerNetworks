@@ -1,5 +1,5 @@
 import socket, select, random
-
+import re
 # IP of the server or the machine that you have
 # where to send the messages or packets
 HOST = ""
@@ -53,26 +53,24 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         #printout the message
                     except :
                         reading = False
-                    # get = get.replace("/", "", 1)
-                    with open(name, "w") as fo:
-                        # loop to read all the lines in the file
-                        for line in filecontent:
-                            # send it to the sender address, decoded to ascii
-                            fo.write(f"{line}\n")
-                        fo.seek(0)
+                    er_check = filecontent[0]
+                    er_check2 = re.search("\[Errno.*", er_check)
+                    if er_check2:
+                        print(er_check)
+                        filecontent.clear()
+                        break
+                    else:
+                        with open(name, "w") as fo:
+                            # loop to read all the lines in the file
+                            for line in filecontent:
+                                # send it to the sender address, decoded to ascii
+                                fo.write(f"{line}\n")
+                            fo.seek(0)
                         # fo.close()
                     # reading = False
                     continue
                 if len(filecontent) == 0:
                     print("File is not received")
-                    incomings = select.select([s],[],[],1) 
-                    try:
-                        messagerec, address = incomings[0][0].recvfrom(1024)
-                        decoded = messagerec.decode('ascii')
-                        get = decoded.split(' ')
-                        print(get)
-                    except:
-                        pass
                 else:
                     print("File received. Saved as", name)
                 continue
