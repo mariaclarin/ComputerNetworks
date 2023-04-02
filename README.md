@@ -18,6 +18,15 @@ This project is a class project for computer network courses which touches sever
 ## Purpose and Structure
 
 ## How it works
+In this program, we have successfully established a Peer to Peer connection on top of a UDP (a transport layer protocol) where two VMs are connected together without the help of a third-party server. All the user needs is to run two separate virtual machines at the same time and establish a connection with the help of the provided files (get.py) in our repository to run the program. 
+
+When the program first runs, the user will be prompted to specify their IP destination address and desired port destination number on both virtual machines. The program will then attempt to establish a connection with the entered IP and port number from both machines. If the connection is successful, something like “Connected to xxx.xxx.xx.xxx on port xxxx” will appear. The program will then ask if the user wants to do GET or POST. The user will then have to enter one of the above options to continue as seen in the snippet below.
+<img src="https://media.discordapp.net/attachments/1085112329018015744/1092101333873610832/image.png">
+
+If the user wrote GET, the program will ask the user to enter a file they want to request from the other machine. Once the user reply with a file name they requested for, the program will ask the user to enter a new name for the later received file before having it saved on their machine. After the user has successfully submitted a new name, the user must respond with a POST within a 5 second timer on the other virtual machine. If there is no response within said timer, the user will be prompted to do another GET or POST option.
+
+If the file name requested exists on the other machine, it will state that it has been received and saved as the new file name entered previously. If the entered file name does not exist, an error will be displayed indicating the file has not been received successfully. The program will also display the RTT (Round Trip Time) regardless a file has been received successfully or not. Finally, the program will show if there is packet loss through an emulation using the random module. Below is a snippet of how the final program looks like.
+<img src="https://media.discordapp.net/attachments/1085112329018015744/1092135335129010277/image.png">
 
 ## Features
 1. POST
@@ -44,10 +53,10 @@ Visual representations of the interaction between the two peers for our project 
 <img src="">
 
 5. Scenario 5:
-<img src="">
+<img src="https://media.discordapp.net/attachments/1090244781155823697/1090308053880033392/Sequence_diagram_case_5.png">
 
 6. Scenario 6:
-<img src="">
+<img src="https://media.discordapp.net/attachments/1090244781155823697/1090308123216068639/Sequence_diagram_case_6_.png">
 
 7. Scenario 7:
 <img src="">
@@ -56,7 +65,7 @@ Visual representations of the interaction between the two peers for our project 
 <img src="">
 
 9. Scenario 9:
-<img src="">
+<img src="https://media.discordapp.net/attachments/1090244781155823697/1092107534128644096/Sequence_diagram_case_9.png">
 
 ## Libraries
 Here is the list of libraries used for the project (Python):
@@ -116,9 +125,21 @@ To use the preconfigured virtual machines for testing, follow these steps:
 
 **Note:** the password for both VMs is will1289
 
-
-
 ## Testing
+
 ## Result Documentation
+Images of the results can be checked in the Test Results folder. Currently, there are 5 successful tests conducted.
+1. get.py success
+The file requested has been received successfully. 
+2. RTT success
+The RTT has been measured successfully as shown in the Time exe1 result.
+3. Packetloss success:
+Packetloss has been emulated successfully shown with “packetloss is there lol.”
+4. No response or time out:
+Result of test if other peer does not respond with POST within the 5 second timer.
+5. File not found error: 
+Result of test when file searched for is not found and thus not sent/received. 
+
+
 ## Future Improvements
 ## Contributors
