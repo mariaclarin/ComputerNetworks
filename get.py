@@ -4,13 +4,86 @@ import socket, select, re, random, json, time
 # where to send the messages or packets
 # HOST = ""
 # direct the connection to  port 8888
-# PORT = 8080
-# DESTINATION_PORT = 8008
+PORT = 8080
+DESTINATION_PORT = 8008
 
 
 # this py for 1 april
 
 # set s variable as socket.socket
+
+#
+yayberhasil = False
+coba_coba = 1
+Posted = False
+
+def Reading():
+    global coba_coba
+    filecontent = []
+    reading = True
+
+    print("Retrying... ke -",coba_coba)
+    coba_coba = coba_coba + 1
+    while reading:
+        #The user will wait to get the message, if the time expire
+        #they will automatically ask for the file
+        incoming = select.select([s],[],[],2)
+        try:
+            data, address = incoming[0][0].recvfrom(1024)
+            #decode the encoded message and remove entrailing characters
+            decode = data.decode("ascii")
+            decode = decode.rstrip()
+            #store message in the list
+            filecontent.append(decode)
+            # print("try decode")
+            #printout the message
+        except :
+            reading = False
+        er_check = filecontent[0]
+        er_check2 = re.search("\[Errno.*", er_check)
+        if er_check2:
+            print(er_check)
+            filecontent.clear()
+            break
+        else:
+            with open(name, "w") as fo:
+                # loop to read all the lines in the file
+                for line in filecontent:
+                    # send it to the sender address, decoded to ascii
+                    fo.write(f"{line}\n")
+                fo.seek(0)
+            # print("with")
+        continue
+    
+    Tanda(filecontent)
+
+
+def Tanda(filecontent):
+    global yayberhasil
+
+    if len(filecontent) == 0:
+        print("File is not received")
+    else:
+        # VM -------------------- end time
+        et1= time.time()
+        print("Time exe1 :", (et1-t1))
+        with open ("database.json") as file:
+            listJSON = json.load(file)
+        
+        jsondict = {
+            "target IP" : SEND,
+            "target PORT" : DESTINATION_PORT,
+            "file name" : name,
+            "file content" : filecontent
+        }
+        listJSON.append(jsondict)
+        with open ("database.json", 'w') as file:
+            json.dump(listJSON, file, indent = 4, separators=(',',': '))
+        print("File received. Saved as", name)
+        yayberhasil = True
+#
+
+
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     HOST = input("Enter your machine IP: ")
     PORT = int(input("Enter your machine PORT: "))
@@ -32,6 +105,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             msg = msg.lower() #lower case string
             #if statement to get (request the file and open the requested file)
             if msg == "get":
+                coba_coba = 1
                 #ask user for the input for the file they want to get
                 get = input("What file would you want to get? (e.g. '/index.html')\n")
                 getmsg = "get " + get
@@ -46,8 +120,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 while reading:
                     #The user will wait to get the message, if the time expire
                     #they will automatically ask for the file
+
                     incoming = select.select([s],[],[],5)
                     try:
+            
                         data, address = incoming[0][0].recvfrom(1024)
                         #decode the encoded message and remove entrailing characters
                         decode = data.decode("ascii")
@@ -60,8 +136,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                         reading = False
                     er_check = filecontent[0]
                     er_check2 = re.search("\[Errno.*", er_check)
+                    # print(er_check)
+
                     if er_check2:
-                        print(er_check)
+                        # print(er_check)
                         filecontent.clear()
                         break
                     else:
@@ -94,6 +172,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 continue
             #if statement to post (see the request and send the messages)
             elif msg == "post":
+                Posted = True
                 #receive message and decode it
                 flag = False
                 while flag == False:
@@ -120,6 +199,35 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     fo.close()
                 continue
         except Exception as e:
-            print(e)
-            errors  = str(e)
-            s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))
+            
+            if Posted :
+                pass
+            else:
+                print(e)
+                errors  = str(e)
+                s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))
+
+                for i in range(2):
+                    
+                    try:
+                        if yayberhasil:
+                            pass
+                        else:
+                            Reading()
+                    
+                    except Exception as e :
+                        print(e)
+                        errors  = str(e)
+                        s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))
+                        try:
+                            if yayberhasil:
+                                pass
+                            else:
+                                Reading()
+                    
+                        except Exception as e :
+                            print(e)
+                            errors  = str(e)
+                            s.sendto(errors.encode(), ((SEND, DESTINATION_PORT)))
+                            pass
+    
