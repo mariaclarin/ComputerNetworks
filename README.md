@@ -31,7 +31,7 @@ If the file name requested exists on the other machine, it will state that it ha
 
 ## Features
 1. POST
-    - The data is sent to the server via the POST method. It is typically used for uploading data or any other file to the server, such as when filling out a form, etc. 
+    - The data is sent to the server via the POST method. It's typically used for uploading data or any other file to the server, such as when filling out a form, etc. 
 2. GET 
     - To ask the server to GET the data or information by utilizing the GET technique.
 3. Packet Loss Emulation
