@@ -51,10 +51,10 @@ Visual representations of the interaction between the two peers for our project 
 2. Scenario 2: No response from other peer thus premature timeout occurs.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092098536558047232/case_2.png">
 
-3. Scenario 3: Packet Loss occurs where have to wait for timeout to resend the package
+3. Scenario 3: Packet Loss occurs where have to wait for timeout to resend the package.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526112003674142/Sequence_Diagram_Case_3.png">
 
-4. Scenario 4: Peer responds but there is a delay
+4. Scenario 4: Peer responds but there is a delay.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092480516458037348/Sequence_diagram_case_4.png">
 
 5. Scenario 5:
@@ -63,10 +63,10 @@ Visual representations of the interaction between the two peers for our project 
 6. Scenario 6:
 <img src="https://media.discordapp.net/attachments/1090244781155823697/1090308123216068639/Sequence_diagram_case_6_.png">
 
-7. Scenario 7: Only part of the message can be received successfully
+7. Scenario 7: Only part of the message can be received successfully.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526160791814197/Sequence_Diagram_Case_7.png">
 
-8. Scenario 8: The received message is erroneous
+8. Scenario 8: The received message is erroneous.
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
 
 9. Scenario 9:
@@ -131,7 +131,7 @@ To use the preconfigured virtual machines for testing, follow these steps:
 **Note:** the password for both VMs is will1289
 
 ## Testing
-Connect the 2 Virtual Machine (VM):
+### Connect the 2 Virtual Machine (VM):
 1. Open the tool properties. 
 2. Go to the port forwarding section.
 3. Add a new port.
@@ -144,41 +144,41 @@ Connect the 2 Virtual Machine (VM):
 10. On the first VM, type: "host ip= iperf -s -p <port number> -u".
 11. On the second VM, type: "client ip= iperf -c <host ip address> -u -p <port number> -b 10m".
 
-GET & POST
+### GET & POST
 - If Virtual Machine (VM) have two IP address:
-1. Establish a connection between both VMs.
-2. Run the get.py program on both VMs.
-3. Enter the IP address and port number on both VMs.
-4. On the first VM, input the "GET" command.
-5. Enter the name of the desired file to retrieve.
-6. Specify a new name for the file
-7. On the second VM, input the "POST" command within 5 seconds after completing step 4 to complete the file transfer. Note that if the command is not entered within the allotted time, the process will time out.
+    1. Establish a connection between both VMs.
+    2. Run the get.py program on both VMs.
+    3. Enter the IP address and port number on both VMs.
+    4. On the first VM, input the "GET" command.
+    5. Enter the name of the desired file to retrieve.
+    6. Specify a new name for the file
+    7. On the second VM, input the "POST" command within 5 seconds after completing step 4 to complete the file transfer. Note that if the command is not entered within the allotted time, the process will time out.
 
 - If Virtual Machine (VM) have one IP address:
-1. Establish a connection between both VMs.
-2. Run the get.py program on the first VM and get2.py on the second VM.
-3. Enter the IP address and port number on both VMs.
-4. On the first VM, input the "GET" command.
-5. Enter the name of the desired file to retrieve.
-6. Specify a new name for the file
-7. On the second VM, input the "POST" command within 5 seconds after completing step 4 to complete the file transfer. Note that if the command is not entered within the allotted time, the process will time out. 
+    1. Establish a connection between both VMs.
+    2. Run the get.py program on the first VM and get2.py on the second VM.
+    3. Enter the IP address and port number on both VMs.
+    4. On the first VM, input the "GET" command.
+    5. Enter the name of the desired file to retrieve.
+    6. Specify a new name for the file
+    7. On the second VM, input the "POST" command within 5 seconds after completing step 4 to complete the file transfer. Note that if the command is not entered within the allotted time, the process will time out. 
 
-Packet Loss
+### Packet Loss
 - If Virtual Machine (VM) have two IP address:
-1. Establish a connection between both VMs.
-2. Run the packetloss2.py program on both VMs.
-3. Enter the IP address and port number on both VMs.
-4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
-5. Once packet loss is detected, try running the program again as you would with the get.py file to confirm proper functionality.
+    1. Establish a connection between both VMs.
+    2. Run the packetloss2.py program on both VMs.
+    3. Enter the IP address and port number on both VMs.
+    4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
+    5. Once packet loss is detected, try running the program again as you would with the get.py file to confirm proper functionality.
 
 - If Virtual Machine (VM) have one IP address:
-1. Establish a connection between both VMs.
-2. Run the packetloss2.py program on the first VM and packetloss3.py on the second VM.
-3. Enter the IP address and port number on both VMs.
-4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
-5. Once packet loss is detected, try running the program again as you would with the get.py and get2.py file to confirm proper functionality.
+    1. Establish a connection between both VMs.
+    2. Run the packetloss2.py program on the first VM and packetloss3.py on the second VM. 
+    3. Enter the IP address and port number on both VMs.
+    4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
+    5. Once packet loss is detected, try running the program again as you would with the get.py and get2.py file to confirm proper functionality.
        
-Problems Encountered and Solution
+### Problems Encountered and Solution
 1. Incorrect port input prevented the program from running. The issue was resolved by identifying and using the correct port number.
 2. Incorrect commands. The issue was resolved by restarting and avoiding typos.
 3. Unable to clone repository due to VM's unconnected network.
@@ -200,5 +200,5 @@ Result of test when file searched for is not found and thus not sent/received.
 
 ## Future Improvements
 ## Contributors
-**Special thanks to Mr ARDIMAS ANDI PURWITA, S.T., M.T., Ph.D.**
+    <p align="center"> **Special thanks to Mr ARDIMAS ANDI PURWITA, S.T., M.T., Ph.D.** 👍/p>
   
