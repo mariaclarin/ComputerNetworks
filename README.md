@@ -1,6 +1,6 @@
 # Peer-to-Peer Protocol with UDP 👥💻🤝💻👥
 ## Introduction
-This project is a class project for computer network courses which touches several things we have learned in classes. The name of this project is reliable UDP protocol with socket programming. Basically as a class, we need to create a P2P protocol on top of the UDP using socket programming that works like HTTP 1.1 GET and POST methods such that an html file can be obtained if the ‘GET’ method is used in and a JSON data can be stored in a storage medium (e.g., file or database) in the target peer if the ‘POST’ method is used
+This project is a class project for computer network courses which touches several things we have learned in classes. The name of this project is reliable UDP protocol with socket programming. Basically as a class, we need to create a P2P protocol on top of the UDP using socket programming that works like HTTP 1.1 GET and POST methods such that an html file can be obtained if the ‘GET’ method is used in and a JSON data can be stored in a storage medium (e.g., file or database) in the target peer if the ‘POST’ method is used. 
 
 ## Table of Contents
 - [Purpose and Structure](#purpose-and-structure)
@@ -39,6 +39,7 @@ If the file name requested exists on the other machine, it will state that it ha
 4. RTT Timer
     - A Round Trip Time (RTT) timer that starts when the first peer sends a request and ends when the second peer responds. Used to check the connection response time.
 5. Multithreading
+    - Simultaneously running several threads by quickly transferring CPU control between them (called context switching). 
 6. Three-way Handshake
     - The first VM sends a GET command to request a file from the second VM. The second VM responds with a POST command to accept the request and initiate the file transfer. The file transfer takes place with the exchange of data packets between the two VMs.
 
