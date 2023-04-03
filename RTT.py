@@ -21,7 +21,7 @@ def Reading():
     filecontent = []
     reading = True
 
-    print("loading...")
+    print("Retrying...")
     while reading:
         #The user will wait to get the message, if the time expire
         #they will automatically ask for the file
@@ -57,6 +57,8 @@ def Reading():
 
 
 def Tanda(filecontent):
+    global yayberhasil
+
     if len(filecontent) == 0:
         print("File is not received")
     else:
@@ -76,6 +78,7 @@ def Tanda(filecontent):
         with open ("database.json", 'w') as file:
             json.dump(listJSON, file, indent = 4, separators=(',',': '))
         print("File received. Saved as", name)
+        yayberhasil = True
 
         
 
@@ -162,6 +165,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                     with open ("database.json", 'w') as file:
                         json.dump(listJSON, file, indent = 4, separators=(',',': '))
                     print("File received. Saved as", name)
+                    yayberhasil = True
                 continue
             #if statement to post (see the request and send the messages)
             elif msg == "post":
@@ -185,11 +189,17 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 
             for i in range(2):
                 try:
-                    Reading()
+                    if yayberhasil:
+                        pass
+                    else:
+                        Reading()
                 
                 except Exception as e :
                     try:
-                        Reading()
+                        if yayberhasil:
+                            pass
+                        else:
+                            Reading()
                 
                     except Exception as e :
 
