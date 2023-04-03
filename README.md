@@ -30,7 +30,9 @@ If the file name requested exists on the other machine, it will state that it ha
 
 ## Features
 1. POST
+    - The data is sent to the server via the POST method. It is typically used for uploading data or any other file to the server, such as when filling out a form, etc. 
 2. GET 
+    - To ask the server to GET the data or information by utilizing the GET technique.
 3. Packet Loss Emulation
     - users can validate the existence of packet loss (given a random percentage) in a packet loss emulated environment/channel.
 4. RTT Timer
@@ -50,7 +52,7 @@ Visual representations of the interaction between the two peers for our project 
 <img src="">
 
 4. Scenario 4:
-<img src="">
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
 
 5. Scenario 5:
 <img src="https://media.discordapp.net/attachments/1090244781155823697/1090308053880033392/Sequence_diagram_case_5.png">
@@ -62,7 +64,7 @@ Visual representations of the interaction between the two peers for our project 
 <img src="">
 
 8. Scenario 8:
-<img src="">
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
 
 9. Scenario 9:
 <img src="https://media.discordapp.net/attachments/1090244781155823697/1092107534128644096/Sequence_diagram_case_9.png">
@@ -143,3 +145,4 @@ Result of test when file searched for is not found and thus not sent/received.
 
 ## Future Improvements
 ## Contributors
+**Special thanks to Mr Ardimas**
