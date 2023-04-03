@@ -2,10 +2,6 @@ import socket, select, re, random, json, time
 
 # IP of the server or the machine that you have
 # where to send the messages or packets
-# HOST = ""
-# direct the connection to  port 8888
-PORT = 8080
-DESTINATION_PORT = 8008
 
 
 # this py for 1 april
