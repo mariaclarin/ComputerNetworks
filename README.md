@@ -55,7 +55,7 @@ Visual representations of the interaction between the two peers for our project 
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526112003674142/Sequence_Diagram_Case_3.png">
 
 4. Scenario 4: Peer responds but there is a delay
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092480516458037348/Sequence_diagram_case_4.png">
 
 5. Scenario 5:
 <img src="https://media.discordapp.net/attachments/1090244781155823697/1090308053880033392/Sequence_diagram_case_5.png">
