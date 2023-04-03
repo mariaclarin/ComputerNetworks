@@ -168,14 +168,14 @@ To use the preconfigured virtual machines for testing, follow these steps:
 1. Establish a connection between both VMs.
 2. Run the packetloss2.py program on both VMs.
 3. Enter the IP address and port number on both VMs.
-4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
+4. If packet loss (probability 25%) does not occur, cancel the program using the control+c command until packet loss is detected.
 5. Once packet loss is detected, try running the program again as you would with the get.py file to confirm proper functionality.
 
 - If Virtual Machine (VM) have one IP address:
 1. Establish a connection between both VMs.
 2. Run the packetloss2.py program on the first VM and packetloss3.py on the second VM. 
 3. Enter the IP address and port number on both VMs.
-4. If packet loss (probability 0.25%) does not occur, cancel the program using the control+c command until packet loss is detected.
+4. If packet loss (probability 25%) does not occur, cancel the program using the control+c command until packet loss is detected.
 5. Once packet loss is detected, try running the program again as you would with the get.py and get2.py file to confirm proper functionality.
        
 ### Problems Encountered and Solution
