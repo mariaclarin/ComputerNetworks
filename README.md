@@ -26,7 +26,7 @@ When the program first runs, the user will be prompted to specify their IP desti
 
 If the user wrote GET, the program will ask the user to enter a file they want to request from the other machine. Once the user reply with a file name they requested for, the program will ask the user to enter a new name for the later received file before having it saved on their machine. After the user has successfully submitted a new name, the user must respond with a POST within a 5 second timer on the other virtual machine. If there is no response within said timer, the user will be prompted to do another GET or POST option.
 
-If the file name requested exists on the other machine, it will state that it has been received and saved as the new file name entered previously. If the entered file name does not exist, an error will be displayed indicating the file has not been received successfully. The program will also display the RTT (Round Trip Time) regardless a file has been received successfully or not. Finally, the program will show if there is packet loss through an emulation using the random module. Below is a snippet of how the final program looks like.
+If the file name requested exists on the other machine, it will state that it has been received and saved as the new file name entered previously. If the entered file name does not exist, an error will be displayed indicating the file has not been received successfully. The program will also display the RTT (Round Trip Time) regardless a file has been received successfully or not. During the process of waiting for a POST, there will be retrying texts indicating that the POST has not been sent by the other peer. Finally, the program will show if there is packet loss through an emulation using the random module. Below is a snippet of how the final program looks like.
 <img src="https://media.discordapp.net/attachments/1085112329018015744/1092135335129010277/image.png">
 
 ## Features
@@ -188,14 +188,14 @@ To use the preconfigured virtual machines for testing, follow these steps:
 Images of the results can be checked in the Test Results folder. Currently, there are 5 successful tests conducted.
 1. get.py success:
 The file requested has been received successfully. 
-2. RTT successs:
+2. RTT success:
 The RTT has been measured successfully as shown in the Time exe1 result.
 3. Packetloss success:
-Packetloss has been emulated successfully shown with “packetloss is there lol.”
+Packet loss has been emulated successfully shown with “packetloss is there lol.”
 4. No response or time out:
 Result of test if other peer does not respond with POST within the 5 second timer.
 5. File not found error:
-Result of test when file searched for is not found and thus not sent/received. 
+Result of test when file searched for is not found and thus not sent/received. The error has been displayed successfully. 
 6. POST retry success:
 Result of test when POST is sent within the timer. The retrying texts indicate that the POST has not been received and is waiting for it.
 
