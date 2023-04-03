@@ -54,7 +54,7 @@ Visual representations of the interaction between the two peers for our project 
 3. Scenario 3:
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526112003674142/Sequence_Diagram_Case_3.png">
 
-4. Scenario 4:
+4. Scenario 4:Peer responds but there is a delay
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
 
 5. Scenario 5:
@@ -66,7 +66,7 @@ Visual representations of the interaction between the two peers for our project 
 7. Scenario 7:
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526160791814197/Sequence_Diagram_Case_7.png">
 
-8. Scenario 8:
+8. Scenario 8:The received message is erroneous
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092092831146979408/Sequence_diagram_case_8.png">
 
 9. Scenario 9:
