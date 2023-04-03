@@ -200,5 +200,5 @@ Result of test when file searched for is not found and thus not sent/received.
 
 ## Future Improvements
 ## Contributors
-    <p align="center"> **Special thanks to Mr ARDIMAS ANDI PURWITA, S.T., M.T., Ph.D.** 👍/p>
+**Special thanks to Mr ARDIMAS ANDI PURWITA, S.T., M.T., Ph.D.** 👍
   
