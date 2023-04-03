@@ -16,12 +16,15 @@ PORT = 1214
 # set s variable as socket.socket
 
 yayberhasil = False
+coba_coba = 1
 
 def Reading():
+    global coba_coba
     filecontent = []
     reading = True
 
-    print("Retrying...")
+    print("Retrying... ke -",coba_coba)
+    coba_coba = coba_coba + 1
     while reading:
         #The user will wait to get the message, if the time expire
         #they will automatically ask for the file
