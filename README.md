@@ -47,12 +47,12 @@ If the file name requested exists on the other machine, it will state that it ha
 Visual representations of the interaction between the two peers for our project for possible scenarios in sequence diagram form: </br>
 1. POST Sequence Diagram
 <img src="">
-1. GET Sequence Diagram
+2. GET Sequence Diagram
 <img src="">
-1. GET with Packet Loss Sequence Diagram
+3. GET with Packet Loss Sequence Diagram
 <img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092699499018846289/Blank_diagram_4.png">
-1. POST with Packet Loss Sequence Diagram
-<img src="">
+4. POST with Packet Loss Sequence Diagram
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1123599214845374564/export202306282001574325.png">
 
 ## Libraries
 Here is the list of libraries used for the project (Python):
