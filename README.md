@@ -46,7 +46,7 @@ If the file name requested exists on the other machine, it will state that it ha
 ## Sequence Diagrams
 Visual representations of the interaction between the two peers for our project for possible scenarios in sequence diagram form: </br>
 1. POST Sequence Diagram
-<img src="">
+<img src="https://media.discordapp.net/attachments/882171844571062292/1123653380573765715/POST.jpeg">
 2. GET Sequence Diagram
 <img src="">
 3. GET with Packet Loss Sequence Diagram
