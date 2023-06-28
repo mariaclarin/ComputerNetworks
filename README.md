@@ -45,32 +45,14 @@ If the file name requested exists on the other machine, it will state that it ha
 
 ## Sequence Diagrams
 Visual representations of the interaction between the two peers for our project for possible scenarios in sequence diagram form: </br>
-1. Scenario 1: All packages received with no issues.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090290956328247367/Blank_diagram_3.png"> 
-
-2. Scenario 2: No response from other peer thus premature timeout occurs.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092098536558047232/case_2.png">
-
-3. Scenario 3: Packet Loss occurs where have to wait for timeout to resend the package.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526112003674142/Sequence_Diagram_Case_3.png">
-
-4. Scenario 4: Peer responds but there is a delay.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092503141259411576/Sequence_diagram_case_4.png">
-
-5. Scenario 5: Peer responds but outside the timer.
-<img src="https://media.discordapp.net/attachments/1090244781155823697/1090308053880033392/Sequence_diagram_case_5.png">
-
-6. Scenario 6: Loss of ACK occurs.
-<img src="https://media.discordapp.net/attachments/1090244781155823697/1090308123216068639/Sequence_diagram_case_6_.png">
-
-7. Scenario 7: Only part of the message can be received successfully.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1090526160791814197/Sequence_Diagram_Case_7.png">
-
-8. Scenario 8: The received message is erroneous.
-<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092503141490110627/Sequence_diagram_case_8.png">
-
-9. Scenario 9: File requested is not found.
-<img src="https://media.discordapp.net/attachments/1090244781155823697/1092107534128644096/Sequence_diagram_case_9.png">
+1. POST Sequence Diagram
+<img src="">
+1. GET Sequence Diagram
+<img src="">
+1. GET with Packet Loss Sequence Diagram
+<img src="https://cdn.discordapp.com/attachments/1090244781155823697/1092699499018846289/Blank_diagram_4.png">
+1. POST with Packet Loss Sequence Diagram
+<img src="">
 
 ## Libraries
 Here is the list of libraries used for the project (Python):
